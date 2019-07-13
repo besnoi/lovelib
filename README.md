@@ -20,3 +20,6 @@ Okay this was particular of Anima but other libraries are awesome as well. If yo
 ## So what is lovelib
 For starters lovelib is a collection of libraries not a library itself. All of my libraries go here (along with lovecc and Anima). If you want to see what these tiny libraries can do then head on to each one of these "sub-repositories" i mean folders. First head on to Anima.
 
+
+## Help Needed?
+Although Anima is almost very mature - the other libraries are pretty immature and i request the reader to fork this project, make changes and benefit humanity (okay that's too much). I will accept almost any changes you make. Right now there is no serious documentation for Anima and so I'd be happy if you add documentation and help the community. 
