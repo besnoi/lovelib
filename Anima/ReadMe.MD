@@ -9,11 +9,11 @@
   <a href="https://github.com/YoungNeer/lovelib/blob/master/Anima/Screenshots/car_animation.gif">
   <img src="https://github.com/YoungNeer/lovelib/blob/master/Anima/Screenshots/car_animation.gif" border=1 width=320 height=240/>
  </a>
-<a href="https://github.com/YoungNeer/lovelib/blob/master/Anima/Screenshots/axe_animation.gif">
-  <img src="https://github.com/YoungNeer/lovelib/blob/master/Anima/Screenshots/axe_animation.gif"  width=320 height=235/>
+<a href="https://github.com/YoungNeer/lovelib/blob/master/Screenshots/axe_animation.gif">
+  <img src="https://github.com/YoungNeer/lovelib/blob/master/Screenshots/axe_animation.gif"  width=320 height=235/>
  </a>
-  <a href="https://github.com/YoungNeer/lovelib/blob/master/Anima/Screenshots/car_animation2.gif">
-  <img src="https://github.com/YoungNeer/lovelib/blob/master/Anima/Screenshots/car_animation2.gif" border=1 width=320 height=240/>
+  <a href="https://github.com/YoungNeer/lovelib/blob/master/Screenshots/car_animation_2.gif">
+  <img src="https://github.com/YoungNeer/lovelib/blob/master/Screenshots/car_animation_2.gif" border=1 width=320 height=240/>
  </a>
 
 
