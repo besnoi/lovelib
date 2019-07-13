@@ -1,7 +1,9 @@
 <p align="center">
- <h2>Anima</h2>
-(KeyFrame animation library for Love2d)
+ <h1 align="center">Anima</h1>
+<h4 align="center" (KeyFrame animation library for Love2d) </h4>
+<br>
 </p>
+<br>
 <p align="center">
 <a href="https://github.com/YoungNeer/lovelib/blob/master/Anima/Screenshots/ball_animation.gif">
   <img src="https://github.com/YoungNeer/lovelib/blob/master/Anima/Screenshots/ball_animation.gif"  width=320 height=235/>
@@ -19,9 +21,14 @@
 
  <br>
  <br>
-  <span style="align: center">Wow! You could do that in just <b><i>three lines of code </i></b></span>
+  <span style="align: center">Wow! You could do that in  <b><i>Anima </i></b></span>
   </p>
 
+
+## How does this work?
+
+Well I am really not into mood of writing how this works. I'm sorry- just see the demos and you will figure out on your own how this works
+(really it's not that hard) and I'd be very very happy if you fork this repo and update the ReadMe.md file explaining how Anima works. 
 
 ## Is this Another LOVE2D Animation Library?
 No this isn't another love2d animation library. Most of them out there such as anim8 are about
