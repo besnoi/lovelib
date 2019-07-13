@@ -1,6 +1,6 @@
 <p align="center">
  <h1 align="center">Anima</h1>
-<h4 align="center" (KeyFrame animation library for Love2d) </h4>
+<span align="center"> (KeyFrame animation library for Love2d) </span>
 <br>
 </p>
 <br>
