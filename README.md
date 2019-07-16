@@ -9,7 +9,8 @@ How would you react if I tell you could do this animation (in love2d) in just th
  </a>
  <br>
  <br>
-  <span style="align: center">Wow! You could do that in just <b><i>three lines of code </i></b></span>
+  <span style="align: center">Wow! You could do that in just <b><i>three lines of code </i></b><br>Note that this is not sprite animation, rather animation of a sprite</span>
+  
   </p>
 
 
