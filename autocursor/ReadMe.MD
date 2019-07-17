@@ -7,8 +7,6 @@ autoCursor is a straight-forward artificial mouse-input-handling module for the 
 Sometimes - when developing games with AI - you want the AI-agent to move the mouse on its own (maybe in board-games like chess,tic-tac-toe,etc where such actions adds to the illusion that another player is playing with the user so-to-speak).
 You can achieve that by using ```love.mouse:setPosition``` but the problem is that it would appear very fake because the cursor is not _moving_ to a position rather _jumping_ to a position. So would it not be nice if you had a framework whose sole purpose-in-life was to achieve that functionality in LÖVE2D allowing you to make the mouse follow to a particular position with other features such as changing the speed at which mouse follows a position or automatically clicking mouse when the cursor has reached the position, etc.
 
-<br>
-
 ## Usage
 
 ```lua
