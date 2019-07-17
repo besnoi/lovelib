@@ -74,7 +74,7 @@ Examples:
 
 ### Appending elements to a table
 
-```lua table.append``` will save you from pushing a lot of elements to the back (i.e. appending) by letting you pushing them all at one go
+```table.append``` will save you from pushing a lot of elements to the back (i.e. appending) by letting you pushing them all at one go
 
 ```lua
 	table.append(tbl,value1,value2,...,valuen)
@@ -118,7 +118,7 @@ For example
 Some may get confused be table.append and table.merge and when should one use which so the next example shows the fundamental difference betwen table.append and table.merge and also gives you an idea how to handle tables when working with *tinyCSV library*-
 
 Let's highscores be the same for both the cases i.e.
-```lua 
+```lua
 	highscores={{"Robin",0},{"Batman",10000}}
 ```
 And then
@@ -158,7 +158,7 @@ The syntax is similar to table.merge
 
 ### Dividing a table into several tables
 
-```lua table.divide``` or ```lua table.subdivide``` will divide a table into several tables. But remember that table.subdivide should be used with hash-tables and table.divide with linear arrays.
+```table.divide``` or ```table.subdivide``` will divide a table into several tables. But remember that table.subdivide should be used with hash-tables and table.divide with linear arrays.
 
 ```lua
 	table.divide(tbl,n)
