@@ -90,7 +90,7 @@ end
 function table.join(tbl,...)
 	--different than table.merge in the sense that it supports only hashtables not arrays 
 	--so if tbl={['a']=5,['b']=6} then merge(tbl,{['c']=5}) will make tbl will be {['a']=5,['b']=6,['c']=5}
-	-- tableassert(tbl,"join")
+	tableassert(tbl,"join")
 	for _,i in pairs{...} do
 		if type(i)=='table' then 
 			for k,j in pairs(i) do
