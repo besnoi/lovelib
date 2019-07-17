@@ -13,8 +13,6 @@ You can achieve that by using ```love.mouse:setPosition``` but the problem is th
 acursor = require 'autoCursor'
 ```
 
-<br>
-
 ### Setting the Destination Point
 
 ```setDestination(x,y)``` sets the destination point (x,y) which the cursor follows
