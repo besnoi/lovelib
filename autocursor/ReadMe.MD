@@ -79,14 +79,14 @@ The default arguments are ```mousebtn==1``` and ```isTouch=false```. So what thi
 ```
 
 
-### Contribution
+## Contribution
 
 If you have any further vision for autocursor then please mail me at netroco@rediffmail.com and since this is on GitHub I encourage you to fork it - make your own changes and then pull request. Most likely I WILL accept your contribution and of course your name will get listed in the CREDITS section of this ReadMe file
 
-### CREDITS
+## CREDITS
 
 YoungNeer (https://github.com/YoungNeer)
 
-### LICENSE
+## LICENSE
 
 You can do whatever you want with this. It's not mandatory to credit the authors.
