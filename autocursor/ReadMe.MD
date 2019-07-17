@@ -5,7 +5,7 @@ autoCursor is a straight-forward artificial mouse-input-handling module for the 
 ### Context (can Skip)
 
 Sometimes - when developing games with AI - you want the AI-agent to move the mouse on its own (maybe in board-games like chess,tic-tac-toe,etc where such actions adds to the illusion that another player is playing with the user so-to-speak).
-You can achieve that by using ```lua love.mouse:setPosition``` but the problem is that it would appear very fake because the cursor is not _moving_ to a position rather _jumping_ to a position. So would it not be nice if you had a framework whose sole purpose-in-life was to achieve that functionality in LÖVE2D allowing you to make the mouse follow to a particular position with other features such as changing the speed at which mouse follows a position or automatically clicking mouse when the cursor has reached the position, etc.
+You can achieve that by using ```love.mouse:setPosition``` but the problem is that it would appear very fake because the cursor is not _moving_ to a position rather _jumping_ to a position. So would it not be nice if you had a framework whose sole purpose-in-life was to achieve that functionality in LÖVE2D allowing you to make the mouse follow to a particular position with other features such as changing the speed at which mouse follows a position or automatically clicking mouse when the cursor has reached the position, etc.
 
 <br>
 
@@ -19,7 +19,7 @@ acursor = require 'autoCursor'
 
 ### Setting the Destination Point
 
-```lua setDestination(x,y)``` sets the destination point (x,y) which the cursor follows
+```setDestination(x,y)``` sets the destination point (x,y) which the cursor follows
 
 Now try running the following example:-
 
@@ -36,7 +36,7 @@ end
 
 ### Changing the speed
 
-```lua acursor:update``` accepts two parameters ```lua dx``` and ```lua dy``` which you can think of as the speed. By default it is 1 pixel/frame but you can set it to something else. This is especially useful when you want to move the cursor diagonally but the distance to cover is unsymmetric (different for x and y).
+```acursor:update``` accepts two parameters ```dx``` and ```dy``` which you can think of as the speed. By default it is 1 pixel/frame but you can set it to something else. This is especially useful when you want to move the cursor diagonally but the distance to cover is unsymmetric (different for x and y).
 
 Try this in the previous example:
 
@@ -46,22 +46,22 @@ Try this in the previous example:
 
 ### Changing the Source Point
 
-Note that source point is by default (0,0) however you can change it to some other value using ```lua setPosition(x,y)```
+Note that source point is by default (0,0) however you can change it to some other value using ```setPosition(x,y)```
 
-In our example you may want to add the following to ```lua love.load()```
+In our example you may want to add the following to ```love.load()```
 ```lua
     acursor:setPosition(400,400)
 ```
 
 ### Automatically clicking when destination is reached
 
-You can set automatic clicking such that when a destination is reached autoCursor will automatically trigger a mouse click. The question you need to ask yourself before setting automatic clicking is - *Do you want to click at the destination point or at a different point?* depending on that you may want to use either of ```lua clickOnReachingDest(mousebtn,isTouch)``` or ```lua clickOnDest(x,ymousebtn,isTouch) ```
+You can set automatic clicking such that when a destination is reached autoCursor will automatically trigger a mouse click. The question you need to ask yourself before setting automatic clicking is - *Do you want to click at the destination point or at a different point?* depending on that you may want to use either of ```clickOnReachingDest(mousebtn,isTouch)``` or ```clickOnDest(x,ymousebtn,isTouch) ```
 
-In our example you may want to add the following to ```lua love.load()```
+In our example you may want to add the following to ```love.load()```
 ```lua
     acursor:clickOnReachingDest()
 ```
-The default arguments are ```lua mousebtn==1``` and ```lua isTouch=false```. So what this will do is left-click the destination point on reaching the destination point
+The default arguments are ```mousebtn==1``` and ```isTouch=false```. So what this will do is left-click the destination point on reaching the destination point
 
 ### Other functions
 
