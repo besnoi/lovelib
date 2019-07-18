@@ -1,22 +1,26 @@
-local fcursor={x=0,y=0,destReached=false,clickOnDest=nil}
+local fcursor={x=0,y=0,dragging=false,destReached=false,clickOnDest=false}
 
-function fcursor:reset() fcursor={x=0,y=0,destReached=false,clickOnDest=nil} end
+function fcursor:reset() fcursor={x=0,y=0,dragging=false,destReached=false,clickOnDest=false} end
 
 function fcursor:setPosition(x,y) fcursor.x,fcursor.y=x or 0,y or 0 end
 
 function fcursor:setDestination(x,y) fcursor.destx,fcursor.desty=x,y end
 
+function fcursor:enableDragging(boolean) fcursor.dragging=boolean or true end
+
 --When destination is reached press a mouse btn (1 by default) [to enable touching the second arg must be true]
 function fcursor:clickOnReachingDest(mousebtn,isTouch) fcursor.clickOnDest={fcursor.destx,fcursor.desty,mousebtn or 1,isTouch or false} end
 
 --Unlike clickOnReachingDest, clickOnDest will click on the given point which may be different than the destination point
-function fcursor:clickOnDest(...) fcursor.clickOnDest={...} end
+function fcursor:clickPointOnDest(...) fcursor.clickOnDest={...} end
 
 function fcursor:update(stepx,stepy)
 	if not fcursor.destReached then
 		stepx,stepy=stepx or 1,stepy or 1
 
 		love.mouse.setPosition(fcursor.x,fcursor.y)
+
+		if fcursor.dragging then love.mousepressed(fcursor.x,fcursor.y) end
 
 		if fcursor.destx~=0 and fcursor.destx~=fcursor.x then
 			fcursor.x=fcursor.x+(fcursor.x<fcursor.destx and stepx or -stepx)

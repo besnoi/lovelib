@@ -51,7 +51,7 @@ In our example you may want to add the following to ```love.load()```
 
 ### Automatically clicking when destination is reached
 
-You can set automatic clicking such that when a destination is reached autoCursor will automatically trigger a mouse click. The question you need to ask yourself before setting automatic clicking is - *Do you want to click at the destination point or at a different point?* depending on that you may want to use either of ```clickOnReachingDest(mousebtn,isTouch)``` or ```clickOnDest(x,ymousebtn,isTouch) ```
+You can set automatic clicking such that when a destination is reached autoCursor will automatically trigger a mouse click. The question you need to ask yourself before setting automatic clicking is - *Do you want to click at the destination point or at a different point?* depending on that you may want to use either of ```clickOnReachingDest(mousebtn,isTouch)``` or ```clickPointOnDest(x,ymousebtn,isTouch) ```
 
 In our example you may want to add the following to ```love.load()```
 ```lua
@@ -79,14 +79,15 @@ The default arguments are ```mousebtn==1``` and ```isTouch=false```. So what thi
 ```
 
 
-## Contribution
+### Contribution
 
 If you have any further vision for autocursor then please mail me at netroco@rediffmail.com and since this is on GitHub I encourage you to fork it - make your own changes and then pull request. Most likely I WILL accept your contribution and of course your name will get listed in the CREDITS section of this ReadMe file
 
-## CREDITS
+### CREDITS
 
 YoungNeer (https://github.com/YoungNeer)
 
-## LICENSE
+### LICENSE
 
 You can do whatever you want with this. It's not mandatory to credit the authors.
+
