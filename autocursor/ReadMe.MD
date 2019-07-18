@@ -59,6 +59,16 @@ In our example you may want to add the following to ```love.load()```
 ```
 The default arguments are ```mousebtn==1``` and ```isTouch=false```. So what this will do is left-click the destination point on reaching the destination point
 
+### Enable Dragging
+
+You can enable automatic dragging such that LMB is pressed every time the current mouse position is changed and that would give a smooth effect of dragging.
+
+```lua
+    acursor:enableDragging()
+```
+
+If you want to turn off dragging then you can simple pass some falsy value in the argument
+
 ### Other functions
 
 ```lua
