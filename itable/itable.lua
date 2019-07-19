@@ -93,15 +93,7 @@ function table.slice(tbl, first, last, step)
     return sliced
 end
 
---[[
-	Supposed minor optimization for large table subset creation...
-	Arguments:
-	- (table) tbl
-	- (int) [first] = 1
-	- (int) [last] = #tbl
-	Returns: (table) subset
-]]
-table.subset=function(tbl,first,last) return table.slice(tbl,first,last,1) end
+table.subset = table.slice
 
 --[[
 	Pushes a value to the end of an array.
@@ -117,7 +109,7 @@ table.push_back=function(tbl,value) assertType(tbl,"push_back") tbl[#tbl+1]=valu
 	- (table) tbl
 	- (any) value
 ]]
-table.push=function(tbl,value) table.push_back(tbl,value) end
+table.push = table.push_back
 
 --[[
 	Replaces the first element in an array.
