@@ -220,7 +220,6 @@ end
 ]]
 function table.isort(tbl,funcn)
 	assertType(tbl,'isort')
-	assertType(funcn,'isort','function')
 	local tmp=tbl
 	table.sort(tmp,funcn)
 	return tmp
