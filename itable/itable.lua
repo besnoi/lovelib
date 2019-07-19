@@ -15,38 +15,77 @@
 
 --returns the index of the first occurence of element el in table tbl
 
-local function tableassert(tbl,fncname,_type)
-	_type=_type or 'table'
-	assert(type(tbl)==_type,("Oops! %s expected in table.%s, got '%s'"):format(_type,fncname,type(tbl)))	
+--[[
+	Asserts the type of a given variable.
+	Arguments:
+	- (any) var
+	- (string) fncname - used for error messages.
+	- (string) [_type] = "table" - Type to compare var to.
+]]
+local function assertType(var,fncname,_type)
+	_type = _type or "table"
+	assert(type(var)==_type,("Oops! %s expected in table.%s, got '%s'"):format(_type,fncname,type(var)))	
 end
 
+--[[
+	Finds the first instance of an element in a given array.
+	Arguments:
+	- (table) tbl
+	- (any) element
+	Returns: int? index (nil if not found)
+]]
 function table.firstIndexOf(tbl,element)
-	tableassert(tbl,"firstIndexOf")
+	assertType(tbl,"firstIndexOf")
 	for i,el in ipairs(tbl) do
 		if el==element then return i end
 	end
 	return nil
 end
 
+--[[
+	Finds the last index of an element in a given array.
+	Arguments:
+	- (table) tbl
+	- (any) element
+	Returns: int? index (nil if not found)
+]]
 function table.lastIndexOf(tbl,element)
-	--returns the index of the last occurence of element el in table tbl	
 	local index=nil
-	tableassert(tbl,"lastIndexOf")	
+	assertType(tbl,"lastIndexOf")	
 	for i,el in ipairs(tbl) do
 		if el==element then index=i end
 	end
 	return index
 end
 
---same as table.firstIndexOf
+--[[
+	Finds the first instance of an element in a given array.
+	Arguments:
+	- (table) tbl
+	- (any) el
+	Returns: int? index (nil if not found)
+]]
 table.indexOf=function(tbl,el) return table.firstIndexOf(tbl,el) end
 
---checks whether or not an element exists in a table
+--[[
+	Finds whether a given element exists in a table or not.
+	Arguments:
+	- (table) tbl
+	- (any) el
+]]
 table.exists=function(tbl,el) return not (table.indexOf(tbl,el)==nil) end
 
+--[[
+	Returns a subset of a table.
+	Arguments:
+	- (table) tbl
+	- (int) [first] = 1
+	- (int) [last] = #tbl
+	- (int) [step] = 1
+	Returns: (table) subset
+]]
 function table.slice(tbl, first, last, step)
-	--returns a subset of a table
-	tableassert(tbl,"slice")	
+	assertType(tbl,"slice")	
     local sliced = {}
     for i = first or 1, last or #tbl, step or 1 do
       sliced[#sliced+1] = tbl[i]
@@ -54,29 +93,61 @@ function table.slice(tbl, first, last, step)
     return sliced
 end
 
---same as table.slice (just little faster for HUGE tables)
+--[[
+	Supposed minor optimization for large table subset creation...
+	Arguments:
+	- (table) tbl
+	- (int) [first] = 1
+	- (int) [last] = #tbl
+	Returns: (table) subset
+]]
 table.subset=function(tbl,first,last) return table.slice(tbl,first,last,1) end
 
---push a value at the end
-table.push_back=function(tbl,value) tableassert(tbl,"push_back") tbl[#tbl+1]=value end
+--[[
+	Pushes a value to the end of an array.
+	Arguments:
+	- (table) tbl
+	- (any) value
+]]
+table.push_back=function(tbl,value) assertType(tbl,"push_back") tbl[#tbl+1]=value end
+
+--[[
+	Pushes a value to the end of an array.
+	Arguments:
+	- (table) tbl
+	- (any) value
+]]
 table.push=function(tbl,value) table.push_back(tbl,value) end
 
---push a value at the front
-table.push_front=function(tbl,value) tableassert(tbl,"push_front") tbl[1]=value end
+--[[
+	Replaces the first element in an array.
+	Arguments:
+	- (table) tbl
+	- (any) value
+]]
+table.push_front=function(tbl,value) assertType(tbl,"push_front") tbl[1]=value end
 
+--[[
+	Pushes every vararg to the end of an array.
+	Arguments:
+	- (table) tbl
+	- (any) varargs...
+]]
 function table.append(tbl,...)
-	--appends all the values 
-	--eg if tbl={1,2,3} then append(tbl,4,5) will make tb={1,2,3,4,5}
-	tableassert(tbl,"append")
+	assertType(tbl,"append")
 	for _,i in ipairs{...} do
 		tbl[#tbl+1]=i
 	end
 end
 
+--[[
+	Merges tables with the first table.
+	Arguments:
+	- (table) tbl
+	- (table) varargs...
+]]
 function table.merge(tbl,...)
-	--merges tbl with n number of tables
-	--eg if tbl={1,2} then merge(tbl,{3,4},{5}) will make tbl will be {1,2,3,4,5}
-	tableassert(tbl,"merge")
+	assertType(tbl,"merge")
 	for _,i in ipairs{...} do
 		if type(i)=='table' then 
 			for _,j in ipairs(i) do
@@ -86,11 +157,15 @@ function table.merge(tbl,...)
 	end
 end
 
-
+--[[
+	Sets key-value pairs in the first table using the other tables.
+	Different from table.merge in the sense that it supports hashtables.
+	Arguments:
+	- (table) tbl
+	- (table) varargs...
+]]
 function table.join(tbl,...)
-	--different than table.merge in the sense that it supports only hashtables not arrays 
-	--so if tbl={['a']=5,['b']=6} then merge(tbl,{['c']=5}) will make tbl will be {['a']=5,['b']=6,['c']=5}
-	tableassert(tbl,"join")
+	assertType(tbl,"join")
 	for _,i in pairs{...} do
 		if type(i)=='table' then 
 			for k,j in pairs(i) do
@@ -100,12 +175,16 @@ function table.join(tbl,...)
 	end
 end
 
---*generic*
+--[[
+	Divides a table into an array of subsets. (Each subset containing less than or n number of elements) of the original table.concat
+	E.g. if tbl={1,2,3,4,5} then subdivide(tbl,2) will return {{1,2},{['3']=3,['4']=4},{['5']=5}}
+	and if tbl={['a']=5,['b']=6,c=8} then subdivide(tbl,1) will return {{['a']=5},{['b']=6},{['c']=8}}
+	Arguments:
+	- (table) tbl
+	- (int) n
+]]
 function table.subdivide(tbl,n)
-	--divide a table into an array of sub-tables (each sub-table containing less than or n number of elements) of the original table and return that array and along with the size of the array
-	--eg if tbl={1,2,3,4,5} then subdivide(tbl,2) will return {{1,2},{['3']=3,['4']=4},{['5']=5}}
-	--and if tbl={['a']=5,['b']=6,c=8} then subdivide(tbl,1) will return {{['a']=5},{['b']=6},{['c']=8}}
-	tableassert(tbl,"subdivide")
+	assertType(tbl,"subdivide")
 	local array,index,i={},1,1
 	for key,value in pairs(tbl) do
 		if i==n+1 then i=1 index=index+1 end
@@ -116,11 +195,16 @@ function table.subdivide(tbl,n)
 	return array,index
 end
 
+--[[
+	Unlike table.subdivide, divide works only on arrays. It differs from subdivide only in one aspect here illustrated by eg
+	e.g. if tbl={1,2,3,4,5} then subdivide(tbl,2) will return {{1,2},{['3']=3,['4']=4},{['5']=5}}
+	but divide(tbl,2) will return {{1,2},{3,4},{5,6}}
+	Arguments:
+	- (table) tbl
+	- (int) n
+]]
 function table.divide(tbl,n)
-	--unlike table.subdivide, divide works only on arrays. It differs from subdivide only in one aspect here illustrated by eg
-	--e.g. if tbl={1,2,3,4,5} then subdivide(tbl,2) will return {{1,2},{['3']=3,['4']=4},{['5']=5}}
-	--but divide(tbl,2) will return {{1,2},{3,4},{5,6}}
-	tableassert(tbl,"divide")	
+	assertType(tbl,"divide")	
 	local array,index,i={},1,1
 	for key,value in ipairs(tbl) do
 		if i==n+1 then i=1 index=index+1 end
@@ -131,10 +215,12 @@ function table.divide(tbl,n)
 	return array,index
 end
 
---kinda like table.sort only differece is that it is not in-place, i.e.no change is made to the original table rather the sorted table is returned
+--[[
+	table.sort except it returns a new table.
+]]
 function table.isort(tbl,funcn)
-	tableassert(tbl,'isort')
-	tableassert(funcn,'isort','function')
+	assertType(tbl,'isort')
+	assertType(funcn,'isort','function')
 	local tmp=tbl
 	table.sort(tmp,funcn)
 	return tmp
