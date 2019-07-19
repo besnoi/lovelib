@@ -42,6 +42,9 @@ function table.firstIndexOf(tbl,element)
 	return nil
 end
 
+-- Alias of firstIndexOf
+table.indexOf = table.firstIndexOf
+
 --[[
 	Finds the last index of an element in a given array.
 	Arguments:
@@ -62,21 +65,14 @@ function table.lastIndexOf(tbl,element)
 end
 
 --[[
-	Finds the first instance of an element in a given array.
-	Arguments:
-	- (table) tbl
-	- (any) el
-	Returns: int? index (nil if not found)
-]]
-table.indexOf = table.firstIndexOf
-
---[[
 	Finds whether a given element exists in a table or not.
 	Arguments:
 	- (table) tbl
-	- (any) el
+	- (any) element
 ]]
-table.exists=function(tbl,el) return not (table.indexOf(tbl,el)==nil) end
+function table.exists(tbl, element)
+	return (table.indexOf(tbl,element) ~= nil)
+end
 
 --[[
 	Returns a subset of a table.
@@ -97,6 +93,7 @@ function table.slice(tbl, first, last, step)
     return sliced
 end
 
+-- Alias of table.slice
 table.subset = table.slice
 
 --[[
@@ -105,14 +102,12 @@ table.subset = table.slice
 	- (table) tbl
 	- (any) value
 ]]
-table.push_back=function(tbl,value) assertType(tbl,"push_back") tbl[#tbl+1]=value end
+function table.push_back(tbl, value)
+	assertType(tbl,"push_back")
+	tbl[#tbl+1]=value
+end
 
---[[
-	Pushes a value to the end of an array.
-	Arguments:
-	- (table) tbl
-	- (any) value
-]]
+-- Alias of table.push_back
 table.push = table.push_back
 
 --[[
@@ -121,7 +116,7 @@ table.push = table.push_back
 	- (table) tbl
 	- (any) value
 ]]
-function table.push_front (tbl, value)
+function table.push_front(tbl, value)
 	table.insert(tbl, 1, value)
 end
 
