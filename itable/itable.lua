@@ -50,12 +50,15 @@ end
 	Returns: int? index (nil if not found)
 ]]
 function table.lastIndexOf(tbl,element)
-	local index=nil
-	assertType(tbl,"lastIndexOf")	
-	for i,el in ipairs(tbl) do
-		if el==element then index=i end
+	local tbl_size = #tbl
+	assertType(tbl,"lastIndexOf")
+	for i=1, tbl_size do
+		local true_i = tbl_size - i + 1
+		if tbl[true_i] == element then
+			return true_i
+		end
 	end
-	return index
+	return nil
 end
 
 --[[
