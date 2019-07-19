@@ -116,12 +116,14 @@ table.push_back=function(tbl,value) assertType(tbl,"push_back") tbl[#tbl+1]=valu
 table.push = table.push_back
 
 --[[
-	Replaces the first element in an array.
+	Pushes a value to the first index of an array and pushes everything over one.
 	Arguments:
 	- (table) tbl
 	- (any) value
 ]]
-table.push_front=function(tbl,value) assertType(tbl,"push_front") tbl[1]=value end
+function table.push_front (tbl, value)
+	table.insert(tbl, 1, value)
+end
 
 --[[
 	Pushes every vararg to the end of an array.
@@ -178,6 +180,9 @@ end
 	Arguments:
 	- (table) tbl
 	- (int) n
+	Returns:
+	- (table) array
+	- (int) index
 ]]
 function table.subdivide(tbl,n)
 	assertType(tbl,"subdivide")
@@ -198,6 +203,9 @@ end
 	Arguments:
 	- (table) tbl
 	- (int) n
+	Returns:
+	- (table) array
+	- (int) index
 ]]
 function table.divide(tbl,n)
 	assertType(tbl,"divide")	
@@ -213,6 +221,10 @@ end
 
 --[[
 	table.sort except it returns a new table without modifying the original.
+	Arguments:
+	- (table) tbl
+	- (function?) funcn
+	Returns: (table) sorted_table
 ]]
 function table.isort(tbl,funcn)
 	assertType(tbl,'isort')
