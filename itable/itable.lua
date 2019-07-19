@@ -216,11 +216,14 @@ function table.divide(tbl,n)
 end
 
 --[[
-	table.sort except it returns a new table.
+	table.sort except it returns a new table without modifying the original.
 ]]
 function table.isort(tbl,funcn)
 	assertType(tbl,'isort')
-	local tmp=tbl
+	local tmp={}
+	for k, v in pairs(tbl) do
+		tmp[k] = v
+	end
 	table.sort(tmp,funcn)
 	return tmp
 end
