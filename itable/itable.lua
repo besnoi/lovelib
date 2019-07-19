@@ -77,6 +77,7 @@ table.exists=function(tbl,el) return not (table.indexOf(tbl,el)==nil) end
 
 --[[
 	Returns a subset of a table.
+	For a possible performance boost on large tables, use 1 as the step value?
 	Arguments:
 	- (table) tbl
 	- (int) [first] = 1
