@@ -68,7 +68,7 @@ end
 	- (any) el
 	Returns: int? index (nil if not found)
 ]]
-table.indexOf=function(tbl,el) return table.firstIndexOf(tbl,el) end
+table.indexOf = table.firstIndexOf
 
 --[[
 	Finds whether a given element exists in a table or not.
