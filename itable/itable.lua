@@ -1,11 +1,10 @@
 --[[
 	iTable Library for Lua/Love2D
-	By Neer (you CAN remove this header if you want)
+	By Neer (https://github.com/YoungNeer/) and Chris H. (https://github.com/Pyutaro)
 	:-A very very simple library but can be very useful.
 	By default Lua doesn't support many table operations even important ones such
 	as indexOf and slice, etc. So this library is to fill that gap. 
 	Just require it and then u can use table.indexOf/table.firstIndexOf,table.slice,etc...
-	
 	
 	P.S. : Note that most of the functions here will work only with tables as arrays (those working with all types of table will have a *generic* written above) and i guess
 	that's why they dont have these functions in the standard table library - cause they are not generic enough.
@@ -13,10 +12,11 @@
 	But most luaites use tables as array, so this library should prove useful I believe
 ]]
 
---returns the index of the first occurence of element el in table tbl
 
 --[[
 	Asserts the type of a given variable.
+	So that you get the power of what happens when a table is nil
+	(sometimes you don't want any reaction so simply have an empty return statement in the body)
 	Arguments:
 	- (any) var
 	- (string) fncname - used for error messages.
