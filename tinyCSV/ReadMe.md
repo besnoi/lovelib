@@ -1,4 +1,4 @@
-## TinyCSV:
+# TinyCSV:
 
 A very useful library which makes handling with CSV's much easy. You even get to choose the format of your file and also how the data must be passed to the table. The documentation here is incomplete and somewhat outdated. I recommend you to read the comments to understand what each and every function does. Finally you can go to https://github.com/YoungNeer/arkanoid to see how tinyCSV is used in my arkanoid game which was one of my first love2d games and may be one of the best (it also used Anima a lot)
 
@@ -15,8 +15,8 @@ Like I said earlier tiniCSV is a no-nonsense library for Lua which you can use o
 
 Before reading and writing file you must know how you want to store data. There are *two ways* you can store data using tinyCSV - each has its own limitations and advantages. And you must use the same format for both reading and writing - otherwise things won't work.
 The two formats are:- 
-    Format `1`: `[key]=value` format
-    Format `2`: `{key,value}` format
+1. `[key]=value` format
+2. `{key,value}` format
 
 **Please remember the ordering**
 
