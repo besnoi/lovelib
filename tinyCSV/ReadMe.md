@@ -29,11 +29,11 @@ The two formats are:-
 ```
 
 Now let's say `"env.csv"` (in the same directory) looks like this
-``
+```csv
 env.csv:
     GAME_WIDTH=1280,
     GAME_HEIGHT=720
-``
+```
 
 So if you want to parse the data and store it in ``game_environment``, you could do that as follows
 ```lua
@@ -58,7 +58,7 @@ Apparently that's not the only way of reading files. If you want default values 
 ```
 
 Let's say we have a file `"highscores.save"` (in same directory) as follows:-
-```
+```csv
     robin:1000,
     jack:20,
     robin:200
