@@ -39,7 +39,6 @@ function table.firstIndexOf(tbl,element)
 	for i,el in ipairs(tbl) do
 		if el==element then return i end
 	end
-	return nil
 end
 
 -- Alias of firstIndexOf
@@ -55,13 +54,9 @@ table.indexOf = table.firstIndexOf
 function table.lastIndexOf(tbl,element)
 	local tbl_size = #tbl
 	assertType(tbl,"lastIndexOf")
-	for i=1, tbl_size do
-		local true_i = tbl_size - i + 1
-		if tbl[true_i] == element then
-			return true_i
-		end
+	for i=#tbl,1,-1 do
+		if tbl[i]==element then return i end
 	end
-	return nil
 end
 
 --[[
@@ -75,19 +70,65 @@ function table.exists(tbl, element)
 end
 
 --[[
+	Returns a range of numbers in the form of table
+	Arguments:
+	- (int) [from] = 1
+	- (int) [to] = (no default value)
+	- (int) [skip] = 1
+	See ReadMe for possible overloads
+]]
+
+function table.range(from,to,skip)
+	skip=skip or 1
+	if not to then from,to=1,from end
+	local tbl={}
+	for i=from,to,skip do  table.insert(tbl,i) end
+	return tbl
+end
+
+
+--[[
+	Reverses the provided table (in-place: doesn't return anything)
+	Arguments:
+	- (table) tbl
+--]]
+
+function table.reverse(tbl)
+	local i,j=1,#tbl
+	while i<j do
+		arr[i],arr[j]=arr[j],arr[i]
+		i,j=i+1,j-1
+	end
+end
+
+--[[
+	Returns a copy of the given table rather than reference
+	Arguments:
+	- (table) tbl
+]]
+
+function table.copy(tbl)
+	assertType(tbl,"slice")	
+	local tmp={}
+	for _,i in ipairs(tbl) do table.insert(tmp,i) end
+	return tmp
+end
+
+--[[
 	Returns a subset of a table.
-	For a possible performance boost on large tables, use 1 as the step value?
 	Arguments:
 	- (table) tbl
 	- (int) [first] = 1
 	- (int) [last] = #tbl
-	- (int) [step] = 1
+	- (int) [skip] = 1
+        Note skip is most of the time useless but sometimes (really) you want to set value another than one - to skip some elements periodically
+	See the Readme file for more details.
 	Returns: (table) subset
 ]]
-function table.slice(tbl, first, last, step)
-	assertType(tbl,"slice")	
+function table.slice(tbl, first, last, skip)
+    assertType(tbl,"slice")	
     local sliced = {}
-    for i = first or 1, last or #tbl, step or 1 do
+    for i = first or 1, last or #tbl, skip or 1 do
       sliced[#sliced+1] = tbl[i]
     end
     return sliced
@@ -95,30 +136,6 @@ end
 
 -- Alias of table.slice
 table.subset = table.slice
-
---[[
-	Pushes a value to the end of an array.
-	Arguments:
-	- (table) tbl
-	- (any) value
-]]
-function table.push_back(tbl, value)
-	assertType(tbl,"push_back")
-	tbl[#tbl+1]=value
-end
-
--- Alias of table.push_back
-table.push = table.push_back
-
---[[
-	Pushes a value to the first index of an array and pushes everything over one.
-	Arguments:
-	- (table) tbl
-	- (any) value
-]]
-function table.push_front(tbl, value)
-	table.insert(tbl, 1, value)
-end
 
 --[[
 	Pushes every vararg to the end of an array.
@@ -223,10 +240,7 @@ end
 ]]
 function table.isort(tbl,funcn)
 	assertType(tbl,'isort')
-	local tmp={}
-	for k, v in pairs(tbl) do
-		tmp[k] = v
-	end
+	local tmp=table.copy(tbl)
 	table.sort(tmp,funcn)
 	return tmp
 end
