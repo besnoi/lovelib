@@ -59,17 +59,39 @@ Examples:
 	--Output: 1,3,5
 ```
 
-### Push an element to table
+### Get Range of Numbers as a table
 
 ```lua
-	table.push_back(tbl,value)
-	--Push value to the end of the table
+	table.range(from, to, skip)
+	--returns a table of elements in the range [from,to] and skips (skip-1) elements alternatively
+```
 
-	table.push_front(tbl,value)
-	--Push value to the front of the table
+Since there are overloads so I need to give example-
 
-	table.push(tbl,value)
-	--Same as table.push_back
+```lua
+	table.concat(table.range(5),',')
+	--1,2,3,4,5 (note from and skip are defaulted to 1)
+
+	table.concat(table.range(4,10,2),',')
+	--4,6,8,10 (note from and skip are defaulted to 1)
+```
+
+### Reversing a table (in-place)
+
+``table.reverse`` Reverses the table passed in the argument
+
+```lua
+	table.reverse(tbl)
+	--the given table 'tbl' is reversed
+```
+
+### Copying a table
+
+In Lua, tables are passed by references (for performance-related reasons) so when you say ``tbl1=tbl2`` tbl2 is not passed to tbl1 by value but by reference - so when you change tbl2 tbl1 is also changed. And sometimes you want that behaviour but sometimes you don't. In case you don't want that behaviour you can use table.copy
+
+```lua
+	table.copy(tbl)
+	--returns a table containing exactly the same elements as tbl (mot for use with hashtables)
 ```
 
 ### Appending elements to a table
@@ -186,12 +208,14 @@ Examples:-
 ```
 ### An extra loop function
 
-table.sort doesn't return anything but sometims you want it to return so in that case you can use table.isort which works like this
+table.sort doesn't return anything but sometimes you want it to return so in that case you can use table.isort which works like this
 
 ```lua
 	table.isort(tbl,funcn)
 	--sorts table tbl a/c to rule function 'funcn' and returns the sorted table
 ```
+
+Also table.isort is not in-place i.e. no changes are made to the original table
 
 The following example illustrates the difference between table.isort and table.sort
 
