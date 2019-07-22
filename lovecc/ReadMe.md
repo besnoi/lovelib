@@ -31,6 +31,8 @@ loveCC already has most of the colors that you'd want to use and even colors you
 ```lua
 	--Overload #1
 	lovecc:newColor(colorname,r,g,b)
+	--note r,g,b is in the range [0,255]
+	
 	--Overload #2
 	lovecc:newColor(colorname,hex)
 ```
@@ -122,8 +124,12 @@ What if a color doesn't exist? You could check for it yourself with the provided
 
 ### Default Color-Palette
 
-Like I said earlier you don't need to redefine the common colors they are already defined for you. But sometimes you may not want all the default colors - for performance reasons. So all you have to do is go to lovecc.lua and keep only the colors that you are using i.e. remove all the colors you are not using or don't want to use
+Like I said earlier you don't need to redefine the common colors they are already defined for you. But sometimes you may not want all the default colors - for performance reasons. So all you have to do is go to lovecc.lua and keep only the colors that you are using i.e. remove all the colors you are not using or don't want to use. And that is the main reason why colorcodes.lua and lovecc.lua are different! colorcodes.lua is the main library and lovecc.lua is just the set of colors that you'd use.
 
 ### Performance Issues
 
 If you are that concerned about performance then here's a tip! First figure out which color you want to use -- add them to the palette and all that. If you want to use only the default color-palette then you can skip this step. After that whenever you say lovecc:setColor(some_color) you can replace that later (when polishing the game) with love.graphics.setColor(). And honestly saying I myself never do that - I use some million color codes in my projects and NEVER EVER has the frame-rate dropped even by 1. So all I can say is this trick is for performance-maniacs and it can be a pain to replace every occurence even if you automate the task using some script. So I suggest you 'let-it-be' cause now-a-days everyone has a pretty fast computer and even mobile devices are getting stronger day by day.
+
+### Contribution
+
+Anyone can contribute to loveCC. Just keep in mind - that there are two lua files - one colorcodes.lua which is the kernel and second lovecc.lua which has the default colors. So you could contribute to either or both. Adding to lovecc.lua is easy - just wikipedia for common colors and if some color is not in the list then you can add it (also add a side comment eg. for crimson you can side comment 'a shade of red').
