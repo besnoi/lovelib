@@ -117,7 +117,7 @@ Okay this is pretty advanced stuff. In all the demos we have not talked about th
 
 So basically there are two virtual mouse event that in complicated (relatively) cases:-
 
-``lua
+```lua
 	acursor.click(x,y,btn,isTouched)
 	--when a virtual click is made
 	acursor.drag(x,y)
