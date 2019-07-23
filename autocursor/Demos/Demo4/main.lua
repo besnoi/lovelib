@@ -10,12 +10,10 @@ function love.load()
 		{toY=200,clickOnDest=false},
 		{toX=200,drag=true}
 	}
+	fcursor.setSpeed(2.5,2.5)
 end
 
-function love.update(dt)
-	--set speedx and speedy to 2.5,2.5 respectively
-	fcursor.updateT(points,2.5,2.5)
-end
+function love.update(dt) fcursor.updateT(points,dt) end
 
 function love.mousepressed(...) print("CLICKED!!!",...) end
 

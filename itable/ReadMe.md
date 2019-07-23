@@ -46,7 +46,7 @@ P.S. This ReadMe file is less about documentation of the functions and more abou
 	--same as table.slice just doesn't allow skipping any element between edges
 ```
 
-Remember that both table.subset and table.slice are *not in-place* so the original table will remain unchanged. They simply return the table that was sliced 
+Remember that both table.subset and table.slice are **not in-place** so the original table will remain unchanged. They simply return the table that was sliced 
 
 Examples:
 
@@ -57,6 +57,18 @@ Examples:
 	--Output: 3,4,5
 	table.concat(table.slice({1,2,3,4,5,6},1,6,2),',')
 	--Output: 1,3,5
+```
+
+### Get Min/Max element of a table
+
+If you have a linear table of numbers then very often you want the minimum or maximum element of the array. In any case you can use `table.min` and `table.max`
+
+```lua
+	table.min(tbl)
+	--returns minimum element of an array of numbers
+
+	table.max(tbl)
+	--returns maximum element of an array of numbers
 ```
 
 ### Get Range of Numbers as a table
@@ -76,6 +88,40 @@ Since there are overloads so I need to give example-
 	--4,6,8,10 (note from and skip are defaulted to 1)
 ```
 
+### Removing all occurences of an element
+
+Quite sometimes you want to remove all the occurences of an element in a table. This can be achieved by `table.removeAll`:
+
+```lua
+	table.removeAll(tbl,el)
+	--removes all occurences of el in table tbl
+```
+
+### Get Random Element in a table
+
+```lua
+	table.random(tbl)
+	--gets random element in table tbl
+```
+For eg,
+```lua
+	table.random{7,8,9,10}
+	--7 or 8 or 9 or 10
+```
+
+### Shuffling a table
+
+This is the function that can really come in handy when making a card-based game like Free Cell, etc. If a table represents the cards then you can simply shuffle the table and that'd be virually shuffling the cards. Can also be useful for word-based games where you want to jumble a word provided the word is represented as a table of characters rather than string.
+
+```lua
+	table.shuffle(tbl)
+	--(not in-place) returns the original table
+	table.mix(tbl)
+	--(in-place) shuffles the original table
+```
+
+Please note that both `table.shuffle` and `table.mix` uses different algorithms to get their jobs done. And note that `table.shuffle` calls `table.mix` under-the-hood so choose wisely.
+
 ### Reversing a table (in-place)
 
 ``table.reverse`` Reverses the table passed in the argument
@@ -91,7 +137,15 @@ In Lua, tables are passed by references (for performance-related reasons) so whe
 
 ```lua
 	table.copy(tbl)
-	--returns a table containing exactly the same elements as tbl (mot for use with hashtables)
+	--returns a table containing exactly the same elements as tbl (can be used with all sorts of tables)
+```
+
+Example:-
+```lua
+	a={{1,2},3,4}
+	b=table.copy(a)
+	b[1]=1
+	print(a[1],b[1])
 ```
 
 ### Appending elements to a table

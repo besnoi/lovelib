@@ -70,6 +70,48 @@ function table.exists(tbl, element)
 end
 
 --[[
+	Returns the maximum element of an array
+	Arguments:
+	- (table) tbl (must be linear array of numbers)
+]]
+function table.max(tbl)
+	assertType(tbl,"max")
+	local max=tbl[1]
+	for i=2,#tbl do if tbl[i]>max then max=tbl[i] end end
+	return max
+end
+
+--[[
+	Returns the minimum element of an array
+	Arguments:
+	- (table) tbl (must be linear array of numbers)
+]]
+function table.min(tbl)
+	assertType(tbl,"min")
+	local min=tbl[1]
+	for i=2,#tbl do if tbl[i]<min then min=tbl[i] end end
+	return min
+end
+
+--[[
+	Returns a copy of the given table rather than reference
+	Arguments:
+	- (table) srcTbl
+]]
+
+function table.copy(srcTbl)
+	local destTbl,el={}
+	for i in pairs(srcTbl) do
+		if type(srcTbl[i])~='table' then
+			destTbl[i]=srcTbl[i]
+		else
+			destTbl[i]=table.copy(srcTbl[i])
+		end
+	end
+	return destTbl
+end
+
+--[[
 	Returns a range of numbers in the form of table
 	Arguments:
 	- (int) [from] = 1
@@ -86,6 +128,56 @@ function table.range(from,to,skip)
 	return tbl
 end
 
+--[[
+	Removes all the occurences of an element in table (in-place doesn't return)
+	Arguments:
+	- (int) tbl (table)
+	- (int) el (element)
+]]
+
+function table.removeAll(tbl,el)
+	-- assertType(tbl,"removeAll")
+	local removetbl,count={},0
+	for i=1,#tbl do if tbl[i]==el then table.insert(removetbl,i) end end
+	for i=1,#removetbl do table.remove(tbl,removetbl[i]-count) count=count+1 end
+end
+
+--[[
+	Gets a random element in a table (trivial yet useful)
+	Arguments:
+	-(table) tbl
+]]
+
+function table.random(tbl)
+	assertType(tbl,'random')
+	return tbl[math.random(#tbl)]
+end
+
+--[[
+	Shuffles the provided table (in-place: shuffles the original table)
+	Arguments:
+	- (table) tbl
+]]
+
+function table.mix(tbl)
+	local j
+	for i=1,#tbl do
+		j=math.random(#tbl)
+		tbl[i],tbl[j]=tbl[j],tbl[i]
+	end
+end
+
+--[[
+	Shuffles the provided table (not in-place: returns the shuffled table)
+	Arguments:
+	- (table) tbl
+ ]]
+
+function table.shuffle(tbl)
+	local tmp=table.copy(tbl)
+	table.mix(tmp)
+	return tmp
+end
 
 --[[
 	Reverses the provided table (in-place: doesn't return anything)
@@ -94,24 +186,12 @@ end
 --]]
 
 function table.reverse(tbl)
+	assertType(tbl,"reverse")
 	local i,j=1,#tbl
 	while i<j do
 		arr[i],arr[j]=arr[j],arr[i]
 		i,j=i+1,j-1
 	end
-end
-
---[[
-	Returns a copy of the given table rather than reference
-	Arguments:
-	- (table) tbl
-]]
-
-function table.copy(tbl)
-	assertType(tbl,"slice")	
-	local tmp={}
-	for _,i in ipairs(tbl) do table.insert(tmp,i) end
-	return tmp
 end
 
 --[[
@@ -244,3 +324,4 @@ function table.isort(tbl,funcn)
 	table.sort(tmp,funcn)
 	return tmp
 end
+

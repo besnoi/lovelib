@@ -26,18 +26,16 @@ function love.load()
 end
 
 function love.update(dt)
-    acursor.update()
+    acursor.update(dt)
 end
 ```
 
 ### Changing the speed
 
-```acursor.update``` accepts two parameters ```dx``` and ```dy``` which you can think of as the speed. By default it is 1 pixel/frame but you can set it to something else. This is especially useful when you want to move the cursor diagonally but the distance to cover is unsymmetric (different for x and y).
-
-Try this in the previous example:
+By default the speed is 1 pixel/frame but you can set it to something else. This is especially useful when you want to move the cursor diagonally but the distance to cover is unsymmetric (different for x and y).
 
 ```lua
-    acursor.update(5,5)
+    acursor.setSpeed(dx,dy)
 ```
 
 ### Changing the Source Point
@@ -59,6 +57,12 @@ In our example you may want to add the following to ```love.load()```
 ```
 The default arguments are ```mousebtn==1``` and ```isTouch=false```. So what this will do is left-click the destination point on reaching the destination point
 
+And note that you can click instantly on reaching destination or you can click after a certain amount of time by using `setCODTime` function:-
+```lua
+	acursor.setCODTime(t)
+	--Set the time after which the cursor should click on destination (default 0)
+```
+
 ### Enable Dragging
 
 You can enable automatic dragging such that LMB is pressed every time the current mouse position is changed and that would give a smooth effect of dragging.
@@ -77,22 +81,35 @@ Just make a table in the given format which defines all that you want to do with
 
 ```
 	points={
-		{fromX=value,fromY=value,toX=value,toY=value,clickOnDest=1 or 2 or 3),drag=boolean}
+		{fromX=value,fromY=value,toX=value,toY=value,clickOnDest=1 or 2 or 3),drag=boolean,speedX=value,speedY=value,codTime=value,stageTime=value}
 		...    ...    ...    ...    ...    ...    ...    ...    ...    ...    ...    ...
 		...    ...    ...    ...    ...    ...    ...    ...    ...    ...    ...    ...
-		{fromX=value,fromY=value,toX=value,toY=value,clickOnDest=1 or 2 or 3),drag=boolean}
+		{fromX=value,fromY=value,toX=value,toY=value,clickOnDest=1 or 2 or 3),drag=boolean,speedX=value,speedY=value,codTime=value,stageTime=value}
 	}
 ```
 
+**NOTE: stageTime is discussed in the next section**
+
 Okay that was the generic format - each entry in the table doesn't always need to have these fields 'cause if a field is not found then it will switch to the previous entry's field. So effectively you don't have to set any other field if it's value is no different then the field's value in the previous entry.
 
-Once done setting the table all you have to do is call ```updateT`` function and pass in the table as the first parameter (speedx and speedy are the second and third parameter but they are optional)
+Once done setting the table all you have to do is call ```updateT`` function and pass in the table as the first parameter and delta time as the second
 
 ```lua
-	acursor.updateT(points)
+	acursor.updateT(points,dt)
 ```
 
 And that's all. You can head on to <a href="https://github.com/YoungNeer/lovelib/tree/master/autocursor/Demos/Demo4">Demo4</a> if you are still confused
+
+### Changing Stage Time
+
+By default once an operation is complete autoCursor directly moves to the next operation and doesn't pause. Sometimes however you want a pause so that the moving looks more natural. Most of the time you want the same amount of pause after every operation has been over. This could be achieved by `setStageTime`
+
+```lua
+	acursor.setStageTime(t)
+	--Set the time after which the stage should change (default 0)
+```
+
+However not always do you want the same amount of pause for every operation. So you can specify for each operation in the table itself by adding `stageTime` field - similar to how you add `codTime` field.
 
 ### Other functions
 
