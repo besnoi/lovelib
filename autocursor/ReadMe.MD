@@ -111,6 +111,19 @@ By default once an operation is complete autoCursor directly moves to the next o
 
 However not always do you want the same amount of pause for every operation. So you can specify for each operation in the table itself by adding `stageTime` field - similar to how you add `codTime` field.
 
+### Virtual Mouse Events
+
+Okay this is pretty advanced stuff. In all the demos we have not talked about this. You can look at the <a href="https://github.com/YoungNeer/lovelib/tree/master/autocursor/Demos/Card Example 1">Card Example</a> if confused.
+
+So basically there are two virtual mouse event that in complicated (relatively) cases:-
+
+``lua
+	acursor.click(x,y,btn,isTouched)
+	--when a virtual click is made
+	acursor.drag(x,y)
+	--when virtually dragging
+```
+
 ### Other functions
 
 ```lua
