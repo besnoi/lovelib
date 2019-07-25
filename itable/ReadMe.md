@@ -97,6 +97,25 @@ Quite sometimes you want to remove all the occurences of an element in a table. 
 	--removes all occurences of el in table tbl
 ```
 
+### Removing the duplicates of an element from table
+
+Quite sometimes you may also want to remove only the duplicate occurences of an element in a table. This can be achieved by `table.removeDuplicates`:
+
+```lua
+	table.removeDuplicates(tbl,el)
+	--removes duplicate occurences of el in table tbl
+```
+
+### Removing duplicate elements from table
+
+It is very common that you run into a situation where you have to remove all the duplicate elements from a list. You can achieve this task simply using `table.removeAllDuplicates`:
+
+```lua
+	table.removeAllDuplicates(tbl)
+	--removes all the duplicate occurences of an element in table tbl
+```
+
+
 ### Get Random Element in a table
 
 ```lua
