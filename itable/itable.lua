@@ -131,7 +131,7 @@ end
 --[[
 	Removes all the occurences of an element in table (in-place doesn't return)
 	Arguments:
-	- (int) tbl (table)
+	- (table) tbl (table)
 	- (int) el (element)
 ]]
 
@@ -145,7 +145,7 @@ end
 --[[
 	Removes only the duplicates of an element in table (in-place doesn't return)
 	Arguments:
-	- (int) tbl (table)
+	- (table) tbl (table)
 	- (int) el (element)
 ]]
 
@@ -154,6 +154,25 @@ function table.removeDuplicates(tbl,el)
 	local pos=table.indexOf(tbl,el)
 	table.removeAll(tbl,el)
 	table.insert(tbl,pos,el)
+end
+
+--[[
+	Removes all the duplicate elements from a table (NOT in-place)
+	Arguments:
+	- (table) tbl
+]]
+
+function table.removeAllDuplicates(tbl)
+	assertType(tbl,"removeAllDuplicates")
+	local hashtable={}
+	local result={}
+	for i=1,#tbl do
+		if not hashtable[tbl[i]] then
+			table.insert(result,tbl[i])
+			hashtable[tbl[i]]=true
+		end
+	end
+	return result
 end
 
 
