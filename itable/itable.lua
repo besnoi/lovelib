@@ -136,11 +136,26 @@ end
 ]]
 
 function table.removeAll(tbl,el)
-	-- assertType(tbl,"removeAll")
+	assertType(tbl,"removeAll")
 	local removetbl,count={},0
 	for i=1,#tbl do if tbl[i]==el then table.insert(removetbl,i) end end
 	for i=1,#removetbl do table.remove(tbl,removetbl[i]-count) count=count+1 end
 end
+
+--[[
+	Removes only the duplicates of an element in table (in-place doesn't return)
+	Arguments:
+	- (int) tbl (table)
+	- (int) el (element)
+]]
+
+function table.removeDuplicates(tbl,el)
+	assertType(tbl,"removeDuplicates")
+	local pos=table.indexOf(tbl,el)
+	table.removeAll(tbl,el)
+	table.insert(tbl,pos,el)
+end
+
 
 --[[
 	Gets a random element in a table (trivial yet useful)
