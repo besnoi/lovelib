@@ -211,7 +211,7 @@ function Anima:update(stepx,stepy,stepr,stepsx,stepsy,stepop,forever,dt)
     --(self.x<self.key.x and 1 or -1)
     --(self.y>self.key.y and 1 or -1)
 
-    if self.typeTimer then 
+    if self.typeTimer and self.animStart then 
         self.typeTimer=self.typeTimer+dt
         if self.typeTimer*self.typeSpeed>1 then
             self.currentText=self.currentText..self.actualText:sub(1,1)
@@ -312,32 +312,38 @@ end
 
 --i could have done this automatically in render function, but it would have been slower
 
-function Anima:print(text,x,y,r,sx,sy,addKey,...)
+function Anima:printKey(text,x,y,r,sx,sy,addKey,...)
     x=(x or 0) + (addKey==true and self.key.x or 0)
     y=(y or 0) + (addKey==true and self.key.y or 0)
     r=(r or 0) + (addKey==true and self.key.r or 0)
     sx=(sx or 1) + (addKey==true and self.key.sx or 0)
     sy=(sy or 1) + (addKey==true and self.key.sy or 0 )
-    if addKey~=true and addKey then args=addKey end
     local cr,cg,cb,ca=love.graphics.getColor()
     love.graphics.setColor(cr,cg,cb,ca+self.op+(addKey and self.key.op or 0))
     
-    love.graphics.print(text,x+self.mark.x+self.x,y+self.mark.y+self.y,r+self.mark.r+self.r,sx+self.mark.sx+self.sx,sy+self.mark.sy+self.sy,args,...)
+    love.graphics.print(text,x+self.mark.x+self.x,y+self.mark.y+self.y,r+self.mark.r+self.r,sx+self.mark.sx+self.sx,sy+self.mark.sy+self.sy,...)
+    love.graphics.setColor(cr,cg,cb,ca)
+end
+
+function Anima:print(text,x,y,r,sx,sy,...)
+    self:printKey(text,x,y,r,sx,sy,false,...)
+end
+
+function Anima:printfKey(text,x,y,limit,alignmode,r,sx,sy,addKey,...)
+    x=(x or 0) + (addKey==true and self.key.x or 0)
+    y=(y or 0) + (addKey==true and self.key.y or 0)
+    r=(r or 0) + (addKey==true and self.key.r or 0)
+    sx=(sx or 1) + (addKey==true and self.key.sx or 0)
+    sy=(sy or 1) + (addKey==true and self.key.sy or 0 )
+    local cr,cg,cb,ca=love.graphics.getColor()
+    love.graphics.setColor(cr,cg,cb,ca+self.op+(addKey and self.key.op or 0))
+    
+    love.graphics.printf(text,x+self.mark.x+self.x,y+self.mark.y+self.y,limit,alignmode,r+self.mark.r+self.r,sx+self.mark.sx+self.sx,sy+self.mark.sy+self.sy,...)
     love.graphics.setColor(cr,cg,cb,ca)
 end
 
 function Anima:printf(text,x,y,limit,alignmode,r,sx,sy,addKey,...)
-    x=(x or 0) + (addKey==true and self.key.x or 0)
-    y=(y or 0) + (addKey==true and self.key.y or 0)
-    r=(r or 0) + (addKey==true and self.key.r or 0)
-    sx=(sx or 1) + (addKey==true and self.key.sx or 0)
-    sy=(sy or 1) + (addKey==true and self.key.sy or 0 )
-    if addKey~=true and addKey then args=addKey end
-    local cr,cg,cb,ca=love.graphics.getColor()
-    love.graphics.setColor(cr,cg,cb,ca+self.op+(addKey and self.key.op or 0))
-    
-    love.graphics.printf(text,x+self.mark.x+self.x,y+self.mark.y+self.y,limit,alignmode,r+self.mark.r+self.r,sx+self.mark.sx+self.sx,sy+self.mark.sy+self.sy,args,...)
-    love.graphics.setColor(cr,cg,cb,ca)
+    self:printfKey(text,x,y,limit,alignmode,r,sx,sy,false,...)
 end
 
 function Anima:getX(x)
