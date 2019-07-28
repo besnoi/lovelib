@@ -4,6 +4,10 @@ A helper library for LOVE2D to help you with colors in general.
 ## Context (can skip)
 Let's say you want to print red text on the screen, how would you do that? Set color to the (1,0,0), right? Well that was easy 'cause every-one knows what is red. But what if you wanted a shade of red such as crimson? Well it's still not that difficult you may wikipedia crimson and set the color to the rgb triplet and remember you will have to divide each component by 255 in the newer version. And honestly saying that's not a lot of work - but what if you had several of such colors which had to difficult to remember color code such as 'light red', 'dark red', 'orange red', etc. So you have two good options - either make your own color-palette-manager to keep track of all the colors you are using or you can use loveCC which comes with default color palette - so you don't need to redefine the common colors such as 'lime', 'orange', etc.
 
+### loveCC is now EVEN SIMPLER
+
+Earlier to use the default color-palette you had to either memorize the color names (which may be simple for violet, khaki, etc but little difficult for colors like aliceblue,etc) or go to the palette file and see which color is it that you want to use. But both of that methods are non-visual and are actually *hit-and-try* method. So to save time you can use ColorPicker (https://github.com/YoungNeer/lovelib/lovecc/ColorPicker)  which is a simple tool to make color-picking an easy task. You just left-click a color and the color-name is copied to your clipboard. But you can also get the love2D color-format in your clipboard by simply right-clicking it. So left-clicking red would give you "red" and right-clicking will give you "1,0,0". Isn't that cool
+
 ## Documentation
 
 I may not cover all the aspects of loveCC (for that you need to take a dig at the source-code) so only the most important functions are discussed here.
@@ -112,6 +116,17 @@ And to set particle colors you could do:-
 	--Note vararg list shouldn't be nil and must be 8 at the very maximum
 ```
 
+### Invert Colors
+
+```lua
+	lovecc:invert(colorname,opacity)
+	--inverts the given color and sets opacity to given value (or 1 if nil)
+	lovecc:invert(opacity)
+	--inverts the current color and sets opacity to given value (or 1 if nil)
+```
+
+So if the current color is black and you used invert() then you will get white color!!
+
 ### Error-handling
 
 What if a color doesn't exist? You could check for it yourself with the provided functions:-
@@ -124,7 +139,7 @@ What if a color doesn't exist? You could check for it yourself with the provided
 
 ### Default Color-Palette
 
-Like I said earlier you don't need to redefine the common colors they are already defined for you. But sometimes you may not want all the default colors - for performance reasons. So all you have to do is go to lovecc.lua and keep only the colors that you are using i.e. remove all the colors you are not using or don't want to use. And that is the main reason why colorcodes.lua and lovecc.lua are different! colorcodes.lua is the main library and lovecc.lua is just the set of colors that you'd use.
+Like I said earlier you don't need to redefine the common colors they are already defined for you- Infact all the CSS colors are defined for you. But sometimes you may not want all the default colors - for performance reasons. So all you have to do is go to mypalette.lua or allcolors.lua depending on which one you are using (By default allcolors.lua is used) and keep only the colors that you are using i.e. remove all the colors you are not using or don't want to use. Also you can make you own color-palette just by looking at mypalette.lua or allcolors.lua
 
 ### Performance Issues
 
@@ -132,4 +147,4 @@ If you are that concerned about performance then here's a tip! First figure out 
 
 ### Contribution
 
-Anyone can contribute to loveCC. Just keep in mind - that there are two lua files - one colorcodes.lua which is the kernel and second lovecc.lua which has the default colors. So you could contribute to either or both. Adding to lovecc.lua is easy - just wikipedia for common colors and if some color is not in the list then you can add it (also add a side comment eg. for crimson you can side comment 'a shade of red').
+Anyone can contribute to loveCC. Just keep in mind - that there are four lua files - one lovecc.lua which is the kernel and others like mypalette.lua, allcolors.lua and . So you could contribute to either or both. Adding to mypalette.lua or allcolors.lua is easy - just wikipedia for common colors and if some color is not in the list then you can add it (also add a side comment eg. for crimson you can side comment 'a shade of red').
