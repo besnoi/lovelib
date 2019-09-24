@@ -21,7 +21,6 @@ local function removeExtension(filename)
 end
 
 local function getExtension(filename)
-	print(filename:sub((lastIndexOf(filename,".") or filename:len()) +1))
 	return filename:sub((lastIndexOf(filename,".") or filename:len()) +1)
 end
 
