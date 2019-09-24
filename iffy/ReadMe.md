@@ -45,8 +45,7 @@ If iffy is not in the same folder as main.lua then you'd say something like `req
 
 Have you ever used Kenney's assets? Then you may know that *all* of Kenney's assets are "game-ready". Meaning you don't have to tweak anything or do some extra work to load those assets. Every spritesheet of Kenney - unless it's a tileset or has animations in it - has an XML file by the same name. Now let's not talk much. Let me give you context. Here's a spritesheet made by Kenney (on left is the image 'diceRed.png' and on right is the metafile 'diceRed.xml')
 
-<img src="Images/wtimg.png" title="The diceRed.png file"/>
-<img src="Images/wtxml.png" title="The diceRed.xml file" width=491 height=115/>
+<p align="center"><img src="Images/wtimg.png" title="The diceRed.png file"/><img src="Images/wtxml.png" title="The diceRed.xml file" width=491 height=115/></p>
 
 That's so nice of Kenney that he provided us with an XML file containing all the information about the individual sprites : but how do we use it - in LOVE2D. That's where Iffy comes to the rescue. With Iffy you'd do something like this:-
 
@@ -64,8 +63,7 @@ Ofcourse you could provide additional parameters for x,y,r,sx,sy,etc. But we set
 
 Second to XML, there's a very popular format for storing sprite data - CSV!! What if your sprite data was not stored in XML but in CSV. Don't worry- Iffy does that as well. Let's say you have two files "dice.png" and "dice.csv" like this:-
 
-<img src="Images/diceimg.png" title="The dice.png file"/>
-<img src="Images/dicecsv.png" title="The dice.csv file"/>
+<p align="center"><img src="Images/diceimg.png" title="The dice.png file"/><img src="Images/dicecsv.png" title="The dice.csv file"/></p>
 
 So just like before - infact exactly the same as before (BTW Don't worry about the extra data. Iffy will ignore them) The way you would load and draw a sprite is :-
 
